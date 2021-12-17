@@ -1,0 +1,29 @@
+<div class="container">
+  <h1 class="display-2">Нанять IT специалиста</h1>
+  <p class="mb-3">Найти IT специалиста на FindProgrammers</p>
+  <img src="https://imagesbase.ru/uploads/posts/2019-12/1576611530_imagesbase.ru.jpg" class="img-fluid mb-3 " alt="Responsive image">
+  <select (change) = "filter()" [(ngModel)] = "chosenStack" name="select" id="" class="custom-select">
+    <option *ngFor = "let stack of stacks" [ngValue]="stack.id">{{stack.name}}</option>
+  </select>
+  <ul class="list-group mt-3">
+    <li *ngFor = "let user of users" (click) = "navigateToUser(user.id)" routerLink = "/user/1" class="list-group-item">
+      <div class="row">
+        <div class="col-2">
+          <img [src]="user.profile.avatar" alt="..." class="img-thumbnail border-0 rounded-circle">
+        </div>
+        <div class="col-4">
+          <div class="row">{{user.first_name}} {{user.last_name}}</div>
+          <div *ngIf = "user.profile.rating != 0" class="row">Качество работы {{user.profile.rating * 20}}%</div>
+          <div class="row">{{user.profile.description}} </div>
+          <p class="text-secondary mt-3"><span>&#8594;</span> К пользователю</p>
+        </div>
+        <div class="col7" *ngFor = "let tech of user.technology">
+          <div class="border p-2 mr-2">{{tech.name}}</div>
+        </div>
+      </div>
+    </li>
+  </ul>
+  <button class="btn btn-primary mt-3 mb-3">Ещё</button>
+</div>
+
+
